@@ -13,7 +13,7 @@ xml.definitions 'xmlns' => 'http://schemas.xmlsoap.org/wsdl/',
       defined = []
       @map.each do |operation, formats|
         (formats[:in] + formats[:out]).each do |p|
-          wsdl_type xml, p, operation
+          wsdl_type xml, p, defined
         end
       end
     end
@@ -22,12 +22,12 @@ xml.definitions 'xmlns' => 'http://schemas.xmlsoap.org/wsdl/',
   @map.each do |operation, formats|
     xml.message :name => "#{operation}" do
       formats[:in].each do |p|
-        xml.part wsdl_occurence(p, false, :name => p.name, :type => p.namespaced_type)
+        xml.part wsdl_occurence(p, false, :name => p.name, :element => p.namespaced_type)
       end
     end
     xml.message :name => formats[:response_tag] do
       formats[:out].each do |p|
-        xml.part wsdl_occurence(p, false, :name => p.name, :type => p.namespaced_type)
+        xml.part wsdl_occurence(p, false, :name => p.name, :element => p.namespaced_type)
       end
     end
   end
