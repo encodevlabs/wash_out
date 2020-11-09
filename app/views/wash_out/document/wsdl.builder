@@ -13,7 +13,7 @@ xml.definitions 'xmlns' => 'http://schemas.xmlsoap.org/wsdl/',
       defined = []
       @map.each do |operation, formats|
         (formats[:in] + formats[:out]).each do |p|
-          wsdl_type xml, p, defined
+          wsdl_type xml, p, operation
         end
       end
     end
