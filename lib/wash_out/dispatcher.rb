@@ -145,7 +145,7 @@ module WashOut
                                       : nil,
                :result => inject.call(result, @action_spec[:out])
              },
-             :content_type => 'text/xml'
+             :content_type => 'application/soap+xml'
     end
 
     # This action is a fallback for all undefined SOAP actions.
@@ -171,7 +171,7 @@ module WashOut
       render :template => "wash_out/#{soap_config.wsdl_style}/error", :status => 500,
              :layout => false,
              :locals => { :error_message => message, :error_code => (code || 'Server') },
-             :content_type => 'text/xml'
+             :content_type => 'application/soap+xml'
     end
 
     def soap_request
